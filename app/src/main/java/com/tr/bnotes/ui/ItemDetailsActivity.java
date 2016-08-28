@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -136,7 +139,7 @@ public class ItemDetailsActivity extends AppCompatActivity implements ItemDetail
         }
 
         final String sign;
-        final int color;
+        @ColorInt final int color;
         if (mActivityItemType == Item.TYPE_EXPENSE) {
             color = ContextCompat.getColor(this, R.color.accent_color);
             sign = "-";
@@ -147,7 +150,7 @@ public class ItemDetailsActivity extends AppCompatActivity implements ItemDetail
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            getSupportActionBar().setBackgroundDrawable(ContextCompat.getDrawable(this, color));
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
         }
 
         mSubTypeTextView.setTextColor(color);
