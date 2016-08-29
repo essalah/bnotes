@@ -5,9 +5,9 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -140,17 +140,23 @@ public class ItemDetailsActivity extends AppCompatActivity implements ItemDetail
 
         final String sign;
         @ColorInt final int color;
+        @ColorInt final int colorDark;
         if (mActivityItemType == Item.TYPE_EXPENSE) {
             color = ContextCompat.getColor(this, R.color.accent_color);
+            colorDark = ContextCompat.getColor(this, R.color.accent_color_dark);
             sign = "-";
         } else {
             color = ContextCompat.getColor(this, R.color.primary_color);
+            colorDark = ContextCompat.getColor(this, R.color.primary_color_dark);
             sign = "+";
         }
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                getWindow().setStatusBarColor(colorDark);
+            }
+            actionBar.setBackgroundDrawable(new ColorDrawable(color));
         }
 
         mSubTypeTextView.setTextColor(color);

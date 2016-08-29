@@ -1,6 +1,8 @@
 package com.tr.bnotes.util;
 
 
+import java.util.Locale;
+
 public final class CurrencyUtil {
     private static final String DECIMAL_FORMAT = "%02d";
 
@@ -40,7 +42,7 @@ public final class CurrencyUtil {
         long decimal = valUnsigned % 100;
         long integral = valUnsigned / 100;
 
-        final String unsigned = integral + "." + String.format(DECIMAL_FORMAT, decimal);
+        final String unsigned = integral + "." + String.format(Locale.US, DECIMAL_FORMAT, decimal);
         final String signed;
         if (addSign) {
             final String sign;

@@ -1,6 +1,7 @@
 package com.tr.bnotes.ui;
 
 import android.app.DatePickerDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
@@ -78,6 +79,9 @@ public class StatsActivity extends AppCompatActivity implements StatsView {
 
         Toolbar toolbar = ButterKnife.findById(this, R.id.stats_toolbar);
         setSupportActionBar(toolbar);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.dark_blue));
+        }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState != null) {
@@ -156,7 +160,7 @@ public class StatsActivity extends AppCompatActivity implements StatsView {
                 TAB_POSITION_INCOME);
         tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.expense_chart)),
                 TAB_POSITION_EXPENSE);
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getPosition() == TAB_POSITION_EXPENSE) {
