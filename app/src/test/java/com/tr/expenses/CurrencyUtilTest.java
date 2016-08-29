@@ -2,9 +2,11 @@ package com.tr.expenses;
 
 import com.tr.bnotes.util.CurrencyUtil;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+import static junit.framework.Assert.assertEquals;
 
-public class CurrencyUtilTest extends TestCase {
+public class CurrencyUtilTest {
+    @Test
     public void testCurrencyConverter() {
         assertEquals(9999, CurrencyUtil.fromString("$@#!$@99.99$#%"));
         assertEquals("99.99", CurrencyUtil.toUnsignedCurrencyString(9999));
